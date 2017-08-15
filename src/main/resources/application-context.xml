@@ -16,6 +16,10 @@
     <bean id="onExceptionRouteBuilder" class="com.threaddynamics.route.OnExceptionRouteBuilder" />
     
     <camel:camelContext id = "defaultCamelContext">
-       <camel:routeBuilder ref="onExceptionRouteBuilder"></camel:routeBuilder>
+       <camel:routeBuilder ref="onExceptionRouteBuilder" />
+       <camel:redeliveryPolicyProfile id="testRedeliveryPolicyProfile" 
+                                      retryAttemptedLogLevel="WARN" 
+                                      redeliveryDelay="5"
+                                      maximumRedeliveries="5" />
     </camel:camelContext>
 </beans>

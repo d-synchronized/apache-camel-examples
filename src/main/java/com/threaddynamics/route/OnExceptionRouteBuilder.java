@@ -17,12 +17,10 @@ public class OnExceptionRouteBuilder extends RouteBuilder{
 				System.out.println("handling exception");
 			}
 		})
-		.log("Received body ${body}").handled(true);
+		.redeliveryPolicyRef("testRedeliveryPolicyProfile").log("Received body ${body}").handled(true);
 		
-		
-		from("file:C:/logs?noop=true")
-		.process(new SimpleProcessor())
-		.to("file:D:/logs");
+		//Move the files
+		from("file:C:/logs?noop=true").process(new SimpleProcessor()).to("file:D:/logs");
 	}
 
 }
