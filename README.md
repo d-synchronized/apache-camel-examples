@@ -1,0 +1,3 @@
+Repository in divided in sequential branches to step by step understand apache camel.
+
+master branch contains the code of the latest merged branch. where branch starts like step-0..step-1 and so on.......
