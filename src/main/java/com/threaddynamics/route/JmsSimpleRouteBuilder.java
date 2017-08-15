@@ -6,7 +6,7 @@ public class JmsSimpleRouteBuilder extends RouteBuilder{
 
 	@Override
 	public void configure() throws Exception {
-		from("file:C:/logs")
+		from("file:C:/logs?noop=true")
 		.split()
 		.tokenize("\n")
 		.to("jms:queue:javainuse");
