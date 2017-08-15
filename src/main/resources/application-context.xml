@@ -12,11 +12,11 @@
     <context:component-scan base-package="com.threaddynamics" />
     
     <bean id="routeBuilder" class="com.threaddynamics.route.SimpleRouteBuilder" />
-    
     <bean id="onExceptionRouteBuilder" class="com.threaddynamics.route.OnExceptionRouteBuilder" />
+    <bean id="jmsSimpleRouteBuilder" class="com.threaddynamics.route.JmsSimpleRouteBuilder" />
     
     <camel:camelContext id = "defaultCamelContext">
-       <camel:routeBuilder ref="onExceptionRouteBuilder" />
+       <camel:routeBuilder ref="jmsSimpleRouteBuilder" />
        <camel:redeliveryPolicyProfile id="testRedeliveryPolicyProfile" 
                                       retryAttemptedLogLevel="WARN" 
                                       redeliveryDelay="5"
