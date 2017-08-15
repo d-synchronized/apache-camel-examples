@@ -13,8 +13,9 @@
     
     <bean id="routeBuilder" class="com.threaddynamics.route.SimpleRouteBuilder" />
     
-    <camel:camelContext id = "defaultCamelContext">
-       <camel:routeBuilder ref="routeBuilder"></camel:routeBuilder>
-    </camel:camelContext>
+    <bean id="onExceptionRouteBuilder" class="com.threaddynamics.route.OnExceptionRouteBuilder" />
     
+    <camel:camelContext id = "defaultCamelContext">
+       <camel:routeBuilder ref="onExceptionRouteBuilder"></camel:routeBuilder>
+    </camel:camelContext>
 </beans>

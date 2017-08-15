@@ -7,21 +7,22 @@ import org.apache.camel.builder.RouteBuilder;
 import com.threaddynamics.exception.CamelCustomException;
 import com.threaddynamics.processor.SimpleProcessor;
 
-public class SimpleRouteBuilder extends RouteBuilder{
+public class OnExceptionRouteBuilder extends RouteBuilder{
 
 	@Override
 	public void configure() throws Exception {
-		from("file:C:/logs?noop=true")
-		.doTry()
-		.process(new SimpleProcessor())
-		.to("file:D:/logs")
-		.doCatch(CamelCustomException.class)
+		onException(CamelCustomException.class)
 		.process(new Processor() {
 			public void process(Exchange exchange) throws Exception {
 				System.out.println("handling exception");
 			}
-		}).log("Received body ${body}");
+		})
+		.log("Received body ${body}").handled(true);
+		
+		
+		from("file:C:/logs?noop=true")
+		.process(new SimpleProcessor())
+		.to("file:D:/logs");
 	}
-	
 
 }
